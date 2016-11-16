@@ -9,12 +9,21 @@ class Auto{
 	private $daten;
 	private $antwort;
 	private $code;
+	private $conn;
 	
 	function __construct() {
 		$this->betankungen = 1;
 		$this->daten = true;
 		$this->antwort = 'Alles ok!';
 		$this->code = 200;
+		
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "database1";
+		// Create connection
+		$this->conn = new mysqli($servername, $username, $password, $dbname);
+
 	}
 	
 	
@@ -34,9 +43,37 @@ class Auto{
 		$this->bauart = $ks;
 	}
 	
-	public function getName(){
-		echo $this->name;
-	}
+	public function speichereAuto(){
+
+		$this->daten = array();
+      $sql = "SELECT * FROM privat";
+      $result = $this->conn->query($sql);
+
+      if ($result->num_rows > 0) {
+          // output data of each row
+          $this->status = 200;
+          while($row = $result->fetch_assoc()) {
+              $this->daten[] = $row;
+          }
+      } else {
+          $this->status = 401;
+          $this->daten = false;
+      }
+      //include('dbinsert.php');
+      $sql = "INSERT INTO privat (name, bauart, kraftstoff, farbe)
+              VALUES ('$this->name', '$this->bauart', '$this->kraftstoff', '$this->farbe')";
+
+      if ($this->conn->query($sql) === TRUE) {
+          $this->status = 200; 
+      } else {
+		  $this->status = 401;
+          echo "Fehler: " . $sql . "<br>" . $conn->error;
+      }
+
+        http_response_code($this->code);
+        echo json_encode($this->daten);
+}
+	
 	
 	public function zeigeAuto() {
 	if($this->daten) {	
@@ -56,7 +93,7 @@ class Auto{
 		'antwort' => $this->antwort
 		);
 	}
-	http_response_code($this->code);s
+	http_response_code($this->code);
 	echo json_encode($this->daten, $this->code);
 	}
 	

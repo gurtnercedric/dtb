@@ -91,7 +91,7 @@ body{
                 <label for="email">Kraftstoff</label>
                 <div class="form-group">
                   <input  class="form-control"
-                          type="kraftstoff"
+                          type="text"
                           name="kraftstoff"
                           value=""
                           placeholder="Kraftstoff"
@@ -113,7 +113,7 @@ body{
 
                 <div class="form-group">
                   
-                  <button onclick="firstFunction()" type="button" name="javabutton" class="btn btn-danger"><i class="fa fa-coffee "></i> Javascript
+                  <button onclick="autoSpeicherung()" type="button" name="javabutton" class="btn btn-danger"><i class="fa fa-coffee "></i> Submit
                   </button>
                 </div>
           </form>
@@ -121,16 +121,15 @@ body{
 		  
 		  
 		  
-			<table id="ergebnis" class="table">
+			<table class="table">
 			<thead>
 			<td class="formhead"><h3>Name</h3></td>
 			<td class="formhead"><h3>Farbe</h3></td>
 			<td class="formhead"><h3>Bauart</h3></td>
 			<td class="formhead"><h3>Kraftstoff</h3></td>
-			<td class="formhead"><h3>Betankungen</h3></td>
 			</thead>
 			
-			<tbody>
+			<tbody id="ergebnis">
 			
 			
 			</tbody>

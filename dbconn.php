@@ -1,8 +1,6 @@
  <?php
  
- include='ajax.php';
- 
- 
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -21,7 +19,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "<br>id: " . $row["ID"]. "<br>- Name: " . $row["$name"]. "<br>- bauart: " . $row["$bauart"]. "<br>- kraftstoff: " . $row["$kraftstoff"]. "<br>- farbe: " . $row["$farbe"]. "<br>";
+        echo "<br>id: " . $row["ID"]. "<br>- Name: " . $row["name"]. "<br>- bauart: " . $row["bauart"]. "<br>- kraftstoff: " . $row["kraftstoff"]. "<br>- farbe: " . $row["farbe"]. "<br>";
     }
 } else {
     echo "0 results";
